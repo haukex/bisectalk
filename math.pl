@@ -9,8 +9,10 @@ my $grammar = do { use Regexp::Grammars; qr{
 	<nocontext:>
 	\A <result=expr> \z
 	<rule: expr>
-		<number> <.ws>
-		(?{ $MATCH = 0+$MATCH{number} })
+		(?: <MATCH=number> | <MATCH=add> ) <.ws>
+	<rule: add>
+		<x=number> \+ <y=number>
+		(?{ $MATCH = $MATCH{x} + $MATCH{y} })
 	<token: number>
 		[-+]?\d+
 }xms };

@@ -11,8 +11,8 @@ my $grammar = do { use Regexp::Grammars; qr{
 	<rule: expr>
 		(?: <MATCH=number> | <MATCH=add> ) <.ws>
 	<rule: add>
-		<x=number> \+ <y=number>
-		(?{ $MATCH = $MATCH{x} + $MATCH{y} })
+		<[number]>+ % <[op=(\+)]>
+		(?{ $MATCH=0; $MATCH+=$_ for $MATCH{number}->@* })
 	<token: number>
 		[-+]?\d+
 }xms };

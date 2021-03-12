@@ -1,7 +1,7 @@
 #!/usr/bin/env perl
 use warnings;
 use 5.028;
-use Test::More tests=>47;
+use Test::More tests=>60;
 use FindBin;
 use File::Spec::Functions qw/catfile updir/;
 use IPC::Run3::Shell
@@ -60,6 +60,20 @@ is math(' 3 + 4 * 5 '), '23';
 is math(' 3 + 4 * 5 + 6 '), '29';
 is math(' 3 * 4 + 5 * 6 '), '42';
 
-badmath('4/5');
+is math('4/5'), '0.8';
+is math('35/5'), '7';
+is math('8/16'), '0.5';
+is math('30/5/2'), '3';
+is math('0.06/24'), '0.0025';
+is math('23/0.2'), '115';
+is math(' 3 / 4 + 5 '), '5.75';
+is math(' 3 + 4 / 5 '), '3.8';
+is math(' 3 + 4 / 5 + 6 '), '9.8';
+is math(' 3 / 4 + 5 / 8 '), '1.375';
+is math(' 3 / 4 * 5 '), '3.75';
+is math(' 3 * 4 / 5 '), '2.4';
+badmath('/5');
+badmath('5/');
+
 badmath('6^7');
 badmath('(3)');

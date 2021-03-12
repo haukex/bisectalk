@@ -6,11 +6,12 @@ use IO::Interactive 'is_interactive';
 my $input = join ' ', @ARGV;
 
 package Actions {
+	use Math::BigFloat;
 	sub new { bless {}, shift }
 	sub add {
 		my ($self, $match) = @_;
 		my ($term, $op) = @$match{qw/term op/};
-		my $out = shift $term->@*;
+		my $out = Math::BigFloat->new( shift $term->@* );
 		return $out if !$term->@* && !ref $op;
 		die unless $term->@* == $op->@*;
 		for my $i ( 0 .. $term->$#* ) {
@@ -30,7 +31,7 @@ my $grammar = do { use Regexp::Grammars; qr{
 	<rule: add>
 		<[term=number]>+ % <[op=(\+|\-)]>
 	<token: number>
-		[-+]?\d+
+		-? (?: \d+ (?: \.\d+ )? | \. \d+ )
 }xms }->with_actions(Actions->new);
 
 $input =~ $grammar or die "Failed to parse input.\n";

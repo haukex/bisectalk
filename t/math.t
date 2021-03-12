@@ -1,7 +1,7 @@
 #!/usr/bin/env perl
 use warnings;
 use 5.028;
-use Test::More tests=>67;
+use Test::More tests=>70;
 use FindBin;
 use File::Spec::Functions qw/catfile updir/;
 use IPC::Run3::Shell
@@ -65,6 +65,9 @@ is math(' 2 ^ 10 '), '1024';
 is math(' 2 ^ 3 ^ 2 '), '512';
 is math('1^2^3^4'), '1';
 is math(' 2 * 3 ^ 4 '), '162';
+is math(' 1 / 2 ^ 3 * 4 '), '0.5';
+is math(' 0.5 ^ 3 '), '0.125';
+is math(' 9 ^ 0.5 '), '3';
 badmath('2^');
 badmath('^5');
 badmath('2^*4');

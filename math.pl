@@ -16,19 +16,23 @@ package Actions {
 		for my $i ( 0 .. $term->$#* ) {
 			if ( $$op[$i] eq '+' ) { $out += $$term[$i] }
 			elsif ( $$op[$i] eq '-' ) { $out -= $$term[$i] }
+			elsif ( $$op[$i] eq '*' ) { $out *= $$term[$i] }
 			else { die }
 		}
 		return $out;
 	}
+	*mult = *mult = \&add;
 }
 
 my $grammar = do { use Regexp::Grammars; qr{
 	<nocontext:>
 	\A <result=expr> \z
 	<rule: expr>
-		(?: <MATCH=number> | <MATCH=add> ) <.ws>
+		<MATCH=add> <.ws>
 	<rule: add>
-		<[term=number]>+ % <[op=(\+|\-)]>
+		<[term=mult]>+ % <[op=(\+|\-)]>
+	<rule: mult>
+		<[term=number]>+ % <[op=(\*)]>
 	<token: number>
 		[-+]?\d+
 }xms }->with_actions(Actions->new);

@@ -47,7 +47,9 @@ my $grammar = do { use Regexp::Grammars; qr{
 	<rule: mult>
 		<[term=pow]>+ % <[op=(\*|\/)]>
 	<rule: pow>
-		<[term=number]>+ % <[op=(\^)]>
+		<[term=paren]>+ % <[op=(\^)]>
+	<rule: paren>
+		<MATCH=number> | \( <MATCH=add> \)
 	<token: number>
 		-? (?: \d+ (?: \.\d+ )? | \. \d+ )
 }xms }->with_actions(Actions->new);

@@ -15,6 +15,7 @@ package Actions {
 		die unless $term->@* == $op->@*;
 		for my $i ( 0 .. $term->$#* ) {
 			if ( $$op[$i] eq '+' ) { $out += $$term[$i] }
+			elsif ( $$op[$i] eq '-' ) { $out -= $$term[$i] }
 			else { die }
 		}
 		return $out;
@@ -27,7 +28,7 @@ my $grammar = do { use Regexp::Grammars; qr{
 	<rule: expr>
 		(?: <MATCH=number> | <MATCH=add> ) <.ws>
 	<rule: add>
-		<[term=number]>+ % <[op=(\+)]>
+		<[term=number]>+ % <[op=(\+|\-)]>
 	<token: number>
 		[-+]?\d+
 }xms }->with_actions(Actions->new);

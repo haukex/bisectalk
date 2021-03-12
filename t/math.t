@@ -1,7 +1,7 @@
 #!/usr/bin/env perl
 use warnings;
 use 5.028;
-use Test::More tests=>28;
+use Test::More tests=>36;
 use FindBin;
 use File::Spec::Functions qw/catfile updir/;
 use IPC::Run3::Shell
@@ -35,7 +35,16 @@ is math(' 32 + 9 + -5 + 89 + -44 + 73541 + -10000 '), '63622';
 badmath('+');
 badmath('1+++3');
 
-badmath('2-1');
+is math('2-1'), '1';
+is math('10-3'), '7';
+is math('4-20'), '-16';
+is math(' -2 - 5 '), '-7';
+is math(' -6- -20 '), '14';
+is math('10-7-3-1'), '-1';
+is math(' 352 - 64 + 45 - 341 - -20 + 60 + -40 '), '32';
+badmath('1-- 3');
+badmath('1---3');
+
 badmath('2*3');
 badmath('4/5');
 badmath('6^7');

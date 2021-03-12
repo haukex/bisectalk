@@ -22,6 +22,17 @@ package Actions {
 		return $out;
 	}
 	*mult = *mult = \&add;
+	sub pow {
+		my ($self, $match) = @_;
+		my $term = $$match{term};
+		return $$term[0] if @$term==1 && !exists $$match{op};
+		die unless $term->@* > 1 && $term->@* == $$match{op}->@*+1
+			&& !grep {$_ ne '^'} $$match{op}->@*;
+		$$term[-2] = $$term[-2];
+		splice @$term, -2, 2, $$term[-2]**$$term[-1]
+			while $term->@* > 1;
+		return $$term[0];
+	}
 }
 
 my $grammar = do { use Regexp::Grammars; qr{
@@ -32,7 +43,9 @@ my $grammar = do { use Regexp::Grammars; qr{
 	<rule: add>
 		<[term=mult]>+ % <[op=(\+|\-)]>
 	<rule: mult>
-		<[term=number]>+ % <[op=(\*)]>
+		<[term=pow]>+ % <[op=(\*)]>
+	<rule: pow>
+		<[term=number]>+ % <[op=(\^)]>
 	<token: number>
 		[-+]?\d+
 }xms }->with_actions(Actions->new);

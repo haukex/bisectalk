@@ -5,16 +5,28 @@ use Data::Dump qw/dd pp/;
 use HTTP::Tiny;
 use Time::Piece;
 use JSON::PP;
+use URI;
 
-# ./getlist.pl | jq -r '.[].date' | tr -d '\-' | sort
+# ./getlist.pl `perldoc -l perlhist` | jq -r '.[].date' | tr -d '\-' | sort
+# or: ./getlist.pl https://github.com/Perl/perl5/raw/blead/pod/perlhist.pod
 
-my $url = @ARGV ? shift : 'https://github.com/Perl/perl5/raw/blead/pod/perlhist.pod';
-my $resp = HTTP::Tiny->new->get($url);
-die "$url: $resp->{status} $resp->{reason}" unless $resp->{success};
+die "Usage: $0 [FILE | URL]\n" unless @ARGV==1;
+my $source = URI->new(shift);
+my $pod;
+if ( defined($source->scheme) && $source->scheme=~/^http/i ) {
+	my $resp = HTTP::Tiny->new->get($source);
+	die "$source: $resp->{status} $resp->{reason}" unless $resp->{success};
+	$pod = $resp->{content};
+}
+else { # assume file
+	open my $fh, '<', $source or die "$source: $!";
+	$pod = do { local $/; <$fh> };
+	close $fh;
+}
 
-my $verb = getverbatim($resp->{content}, qr/\b(?:the\s+records)\b/i);
+my $verb = getverbatim($pod, qr/\b(?:the\s+records)\b/i);
 my $rels = $$verb[0];
-$rels =~ /\A\s*Pump-[^=]+\bkin\b[^=]+\bHolder\b/i or die pp($rels);
+$rels =~ /\A\s*Pump-[^=]+\bkin(?:g|\b[^=]+\bHolder)\b/i or die pp($rels);
 
 # https://www.perlmonks.org/?node_id=1179840
 my ($date_re) = map {qr/\b\d{4}-(?i:$_)-\d\d\b/} join '|', map {quotemeta}

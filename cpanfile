@@ -3,7 +3,7 @@
 
 requires 'Regexp::Grammars';
 requires 'IO::Interactive';
-requires 'IPC::Run3::Shell';
+requires 'IPC::Run3::Shell', '0.58';
 requires 'Data::Dump';
 requires 'Net::SSLeay', '1.49';
 requires 'IO::Socket::SSL', '1.56';

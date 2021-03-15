@@ -33,7 +33,7 @@ my $LE = colored("\N{U+2264}",'bold bright_white');
 $SIG{INT} = $SIG{TERM} = sub { exit };
 END {
 	ReadMode 'restore';
-	print $terminal->Tputs('ve'); # cursor_normal
+	print $terminal->Tputs('ve') if $terminal; # cursor_normal
 }
 ReadMode 'cbreak';
 print $terminal->Tputs('vi'); # cursor_invisible

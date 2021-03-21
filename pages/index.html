@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Pinpointing Changes with Bisection / German Perl Workshop 2021</title>
+	<!-- https://github.com/asciinema/asciinema-player/releases/download/v2.6.1/asciinema-player.css -->
+	<link rel="stylesheet" type="text/css" href="asciinema-player.css" />
+	<link rel="stylesheet" type="text/css" href="theme-bisectalk.css" />
+	<style>
+		body {
+			background: grey;
+			font-family: Ubuntu, Calibri, "Droid Sans", Tahoma, Arial, Helvetica, sans-serif;
+		}
+		pre,tt,textarea,kbd,var,code,samp, .asciinema-terminal {
+			font-family: "Bitstream Vera Sans Mono", "Ubuntu Mono", Consolas, "Droid Sans Mono", "Lucida Console", "Courier New", Courier, monospace;
+		}
+		/* .asciinema-player { border: 1px solid gray; } */
+		.center { text-align: center; }
+	</style>
+</head>
+<body>
+	<!-- https://github.com/asciinema/asciinema-player -->
+	<asciinema-player id="the-ascii-player" src="talk_gpw2021.cast" preload poster="npt:0:01" font-size="11pt" theme="bisectalk"></asciinema-player>
+	<audio id="the-audio-player" preload="auto">
+		<!-- ffmpeg -i foo.m4a -c:v copy -c:a libmp3lame -q:a 4 foo.mp3 -->
+		<source src="talk_gpw2021.mp3" type="audio/mpeg">
+	</audio>
+	<p class="center"><small>
+		This presentation requires HTML5 Audio and JavaScript support.
+		Playback Speed:
+		<a href="?">1x</a>
+		<a href="?speed=1.5">1.5x</a>
+		<a href="?speed=2">2x</a>
+		<span id="currentspeed"></span>
+	</small></p>
+	<p class="center"><strong><a href="https://github.com/haukex/bisectalk" target="_blank">See the sources on GitHub!</a></strong></p>
+	<script>
+		"use strict";
+		var ascii = document.getElementById('the-ascii-player');
+		var sound = document.getElementById('the-audio-player');
+		// note seeking the asciinema player causes a "play" event
+		ascii.addEventListener('play', function(e) {
+			sound.currentTime = ascii.currentTime;
+			sound.play();
+		});
+		ascii.addEventListener('pause', function(e) {
+			sound.pause();
+		});
+		// speed
+		let params = new URLSearchParams(window.location.search);
+		let speed = parseFloat(params.get("speed"));
+		if ( isNaN(speed) || speed<0.1 ) speed = 1;
+		if ( speed>4 ) speed = 4;
+		document.getElementById('currentspeed').innerText = "(Current: "+speed+"x)";
+		ascii.setAttribute("speed", speed);
+		sound.playbackRate = speed;
+	</script>
+	<!-- https://github.com/asciinema/asciinema-player/releases/download/v2.6.1/asciinema-player.js -->
+	<script src="asciinema-player.js"></script>
+</body>
+</html>

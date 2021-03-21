@@ -1,0 +1,119 @@
+/* Custom version of asciinema-theme-tango
+ * - Doesn't make everything "bright" be bold */
+.asciinema-theme-bisectalk .asciinema-terminal {
+  color: #cccccc;
+  background-color: #121314;
+  border-color: #121314;
+}
+.asciinema-theme-bisectalk .fg-bg {
+  color: #121314;
+}
+.asciinema-theme-bisectalk .bg-fg {
+  background-color: #cccccc;
+}
+.asciinema-theme-bisectalk .fg-0 {
+  color: #000000;
+}
+.asciinema-theme-bisectalk .bg-0 {
+  background-color: #000000;
+}
+.asciinema-theme-bisectalk .fg-1 {
+  color: #cc0000;
+}
+.asciinema-theme-bisectalk .bg-1 {
+  background-color: #cc0000;
+}
+.asciinema-theme-bisectalk .fg-2 {
+  color: #4e9a06;
+}
+.asciinema-theme-bisectalk .bg-2 {
+  background-color: #4e9a06;
+}
+.asciinema-theme-bisectalk .fg-3 {
+  color: #c4a000;
+}
+.asciinema-theme-bisectalk .bg-3 {
+  background-color: #c4a000;
+}
+.asciinema-theme-bisectalk .fg-4 {
+  color: #3465a4;
+}
+.asciinema-theme-bisectalk .bg-4 {
+  background-color: #3465a4;
+}
+.asciinema-theme-bisectalk .fg-5 {
+  color: #75507b;
+}
+.asciinema-theme-bisectalk .bg-5 {
+  background-color: #75507b;
+}
+.asciinema-theme-bisectalk .fg-6 {
+  color: #06989a;
+}
+.asciinema-theme-bisectalk .bg-6 {
+  background-color: #06989a;
+}
+.asciinema-theme-bisectalk .fg-7 {
+  color: #d3d7cf;
+}
+.asciinema-theme-bisectalk .bg-7 {
+  background-color: #d3d7cf;
+}
+.asciinema-theme-bisectalk .fg-8 {
+  color: #555753;
+}
+.asciinema-theme-bisectalk .bg-8 {
+  background-color: #555753;
+}
+.asciinema-theme-bisectalk .fg-9 {
+  color: #ef2929;
+}
+.asciinema-theme-bisectalk .bg-9 {
+  background-color: #ef2929;
+}
+.asciinema-theme-bisectalk .fg-10 {
+  color: #8ae234;
+}
+.asciinema-theme-bisectalk .bg-10 {
+  background-color: #8ae234;
+}
+.asciinema-theme-bisectalk .fg-11 {
+  color: #fce94f;
+}
+.asciinema-theme-bisectalk .bg-11 {
+  background-color: #fce94f;
+}
+.asciinema-theme-bisectalk .fg-12 {
+  color: #729fcf;
+}
+.asciinema-theme-bisectalk .bg-12 {
+  background-color: #729fcf;
+}
+.asciinema-theme-bisectalk .fg-13 {
+  color: #ad7fa8;
+}
+.asciinema-theme-bisectalk .bg-13 {
+  background-color: #ad7fa8;
+}
+.asciinema-theme-bisectalk .fg-14 {
+  color: #34e2e2;
+}
+.asciinema-theme-bisectalk .bg-14 {
+  background-color: #34e2e2;
+}
+.asciinema-theme-bisectalk .fg-15 {
+  color: #eeeeec;
+}
+.asciinema-theme-bisectalk .bg-15 {
+  background-color: #eeeeec;
+}
+.asciinema-theme-bisectalk .fg-8,
+.asciinema-theme-bisectalk .fg-9,
+.asciinema-theme-bisectalk .fg-10,
+.asciinema-theme-bisectalk .fg-11,
+.asciinema-theme-bisectalk .fg-12,
+.asciinema-theme-bisectalk .fg-13,
+.asciinema-theme-bisectalk .fg-14,
+.asciinema-theme-bisectalk .fg-15 {
+  /*font-weight: bold;*/
+}

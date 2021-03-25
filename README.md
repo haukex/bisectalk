@@ -5,9 +5,9 @@ Pinpointing Changes with Bisection
 This is a talk about `git bisect` and how it can be used on the Perl core,
 inspired by my node [How to Bisect Perl](https://www.perlmonks.org/?node_id=11110663) on PerlMonks.
 
-**[Watch the talk here!](https://haukex.github.io/bisectalk)**
+**[Watch the talk here!](https://haukex.github.io/bisectalk)** (in German)
 
-This talk was given at the *23rd German Perl/Raku Workshop 2021*
+This talk was given (in German) at the *23rd German Perl/Raku Workshop 2021*
 <https://act.yapc.eu/gpw2021/talk/7761>
 
 This repository contains all the material for the talk:
@@ -26,7 +26,7 @@ This repository contains all the material for the talk:
 
 - Scripts used for bisection in the `bisect` directory, including
   `runner.sh` for the simpler bash-based bisection runner,
-  and `viz.pl` for the Perl-based visualization.
+  and `viz.pl` for the Perl-based visualization
 
 - Examples of binary search in `binsearch.pl` and `binsearch_viz.pl`,
   plus some code to fetch the list I search in my demo in `getlist.pl`

@@ -12,7 +12,7 @@ This talk was given (in German) at the *23rd German Perl/Raku Workshop 2021*
 
 This repository contains all the material for the talk:
 
-- The recording of the talk and the player in the `pages` directory,
+- The recording of the talk and the player in the `docs` directory,
   served by GitHub at <https://haukex.github.io/bisectalk>
 
 - The `cpanfile` that lists the dependencies for the repository,

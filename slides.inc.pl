@@ -160,7 +160,9 @@ push @SLIDES, {
 push @SLIDES, {
 	title => "Prerequisites",
 	render => [
-		{ y=>'+2', text => "• Linux (I haven't tried on Windows)" },
+		{ y=>'+2', text => "• I've always used Linux" },
+		{ text => "\t◦ Should work on most *NIX OSes" },
+		{ text => "\t◦ I haven't tried on Windows" },
 		{ y=>'+2', text => "• git clone https://github.com/Perl/perl5.git ~/perl5/src" },
 		{ y=>'+2', text => "• Libraries needed to build Perl, e.g. on Debian/Ubuntu:" },
 		{ text => "\t◦ sudo apt-get install build-essential" },

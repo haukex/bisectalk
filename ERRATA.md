@@ -10,3 +10,8 @@ v1.0, 23rd German Perl/Raku Workshop 2021
   (Also, in `talk_gpw2021.mp3`, I think I talked a little too fast
   during parts of this slide.)
 
+- On slide 8, "Preparation", I said "Using non-core modules is possible but not
+  easy". Depending on which modules, it's actually not necessarily too
+  difficult, as I showed e.g. here:
+  <https://www.perlmonks.org/?node_id=11135658>
+
